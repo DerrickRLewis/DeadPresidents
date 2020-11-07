@@ -1,6 +1,8 @@
 package io.figure8.deadpresidents;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Presidents Apps";
     Button btn_addOne;
     List<President> presidentList = new ArrayList<President>();
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
 
     @Override
@@ -38,6 +44,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        recyclerView = (RecyclerView) findViewById(R.id.lv_presidentList);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new MyAdapter(presidentList,MainActivity.this);
+        recyclerView.setAdapter(mAdapter);
+
+
     }
 
     private void fillPresidentList() {
