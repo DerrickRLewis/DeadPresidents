@@ -53,7 +53,7 @@ public class AddEditOne extends AppCompatActivity {
             btn_ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (id > -0) {
+                    if (id >= 0) {
                         //update
                         President updatedPresident = new President(id, et_presName.getText().toString(), Integer.parseInt(et_presDate.getText().toString()), et_presImageURL.getText().toString());
                         presidentList.set(id, updatedPresident);

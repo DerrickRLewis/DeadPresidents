@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -81,16 +82,24 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_aToz:
                 //sort a to z
-                Toast.makeText(myApplication,"Sorting A to Z ",Toast.LENGTH_SHORT).show();
+                Collections.sort(presidentList,President.PresidentNameAZComparator);
+                Toast.makeText(MainActivity.this,"Sorting A to Z",Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_zToa:
-                Toast.makeText(myApplication,"Sorting Z to A ",Toast.LENGTH_SHORT).show();
+                Collections.sort(presidentList,President.PresidentNameZAComparator);
+                Toast.makeText(MainActivity.this,"Sorting Z to A",Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_dateAscending:
-                Toast.makeText(myApplication,"Sorting date ascending",Toast.LENGTH_SHORT).show();
+                Collections.sort(presidentList,President.PresidentDateAscendingComparator);
+                Toast.makeText(MainActivity.this,"Sorting date ascending",Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_dateDescending:
-                Toast.makeText(myApplication,"Sorting date descending ",Toast.LENGTH_SHORT).show();
+                Collections.sort(presidentList,President.PresidentDateDescendingComparator);
+                Toast.makeText(MainActivity.this,"Sorting date descending",Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);
